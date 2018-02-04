@@ -13,6 +13,7 @@ env:
       init: /lib/systemd/systemd
       run_opts: ""
 install:
+  - sudo apt-get upgrade python -y
   - pip install ansible==2.3.0
   - pip install ansible-lint==3.4.10
   - mkdir "${ANSIBLE_ROLES_PATH}"
