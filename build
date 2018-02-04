@@ -46,7 +46,7 @@ ansible-playbook test.yml
 
 # Test role idempotence.
 idempotence_file=$(mktemp)
-ansible-playbook test.yml
+ansible-playbook test.yml \
   | tee "${idempotence_file}"
 grep -q 'changed=0.*failed=0' "${idempotence_file}" && \
   (echo 'Idempotence test: pass' && exit 0) || \
