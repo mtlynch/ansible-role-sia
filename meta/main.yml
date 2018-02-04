@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Michael Lynch
+  description: Sia distributed storage network
+  license: MIT
+  min_ansible_version: 2.3
+  platforms:
+  - name: Ubuntu
+    versions:
+      - xenial
+      - zesty
+  galaxy_tags:
+    - sia
+    - siacoin
