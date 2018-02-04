@@ -1,0 +1,40 @@
+---
+- name: install unzip
+  apt:
+    name: unzip
+    state: installed
+
+- name: check for existing Sia installation
+  stat:
+    path: "{{ sia_dir }}"
+  register: sia_dir_stat
+
+- name: install Sia
+  unarchive:
+    src: "{{ sia_url }}"
+    dest: "{{ sia_dir | dirname }}"
+    remote_src: True
+  when: not sia_dir_stat.stat.exists
+
+- name: set symlink to latest Sia version
+  file:
+    state: link
+    src: "{{ sia_dir }}"
+    dest: "{{ sia_symlink }}"
+
+- name: check for consensus database
+  stat:
+    path: "{{ sia_dir }}/consensus/consensus.db"
+  register: consensus_file
+
+- name: bootstrap consensus file
+  import_tasks: bootstrap.yml
+  when: sia_bootstrap_blockchain and not consensus_file.stat.exists
+
+- name: change ownership to ansible user
+  file:
+    path: "{{ sia_dir }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    recurse: yes
+    state: directory

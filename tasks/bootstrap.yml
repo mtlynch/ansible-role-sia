@@ -1,0 +1,19 @@
+---
+- name: create Sia consensus directory
+  file:
+    path: "{{ sia_dir }}/consensus"
+    state: directory
+
+- name: set local consensus gzipped file name
+  set_fact:
+    sia_consensus_gzip: "{{ sia_dir }}/consensus/consensus.db.gz"
+
+- name: download consensus database
+  get_url:
+    url: "{{ sia_blockchain_url }}"
+    dest: "{{ sia_consensus_gzip }}"
+    remote_src: True
+
+- name: unzip the consensus database
+  command: "gunzip {{ sia_consensus_gzip }}"
+

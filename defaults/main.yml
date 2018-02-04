@@ -1,0 +1,8 @@
+---
+sia_version: 1.3.1
+sia_package: "Sia-v{{ sia_version }}-linux-amd64"
+sia_url: "https://github.com/NebulousLabs/Sia/releases/download/v{{ sia_version }}/{{ sia_package }}.zip"
+sia_dir: "/opt/{{ sia_package }}"
+sia_symlink: "/opt/sia"
+sia_bootstrap_blockchain: True
+sia_blockchain_url: https://consensus.siahub.info/consensus.db.gz

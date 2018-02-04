@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export distro=ubuntu1604
+export init=/sbin/init
+export run_opts=""
+
+bash -x ./build

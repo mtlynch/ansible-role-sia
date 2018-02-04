@@ -1,0 +1,7 @@
+---
+- hosts: all
+  remote_user: root
+  vars:
+    - sia_bootstrap_blockchain: False
+  roles:
+    - { role: role_under_test, tags: ['role_under_test'] }
