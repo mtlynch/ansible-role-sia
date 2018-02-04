@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/mtlynch/ansible-role-sia.svg?branch=master)](https://travis-ci.org/mtlynch/ansible-role-sia)
 [![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-sia-blue.svg?style=flat-square)](https://galaxy.ansible.com/mtlynch/sia)
-[![License](http://img.shields.io/:license-apache-blue.svg?style=flat-square)](LICENSE)
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](LICENSE)
 
 ## Role Variables
 
