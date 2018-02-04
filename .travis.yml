@@ -13,9 +13,6 @@ env:
     - distro: ubuntu1604
       init: /lib/systemd/systemd
       run_opts: ""
-    - distro: ubuntu1704
-      init: /lib/systemd/systemd
-      run_opts: ""
 install:
   - pip install ansible==2.4.0
   - pip install ansible-lint==3.4.16
