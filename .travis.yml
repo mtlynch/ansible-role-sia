@@ -20,7 +20,7 @@ install:
   - pip install ansible==2.4.0
   - pip install ansible-lint==3.4.16
   - mkdir "${ANSIBLE_ROLES_PATH}"
-  - printf "[defaults]\nhostfile=hosts\nansible_roles=${ANSIBLE_ROLES_PATH}" > ~/.ansible.cfg
+  - printf "[defaults]\ninventory=hosts\nansible_roles=${ANSIBLE_ROLES_PATH}" > ~/.ansible.cfg
 script:
   - ./build
 notifications:
