@@ -3,7 +3,7 @@ galaxy_info:
   author: Michael Lynch
   description: Sia distributed storage network
   license: MIT
-  min_ansible_version: 2.3
+  min_ansible_version: 2.4
   platforms:
   - name: Ubuntu
     versions:
