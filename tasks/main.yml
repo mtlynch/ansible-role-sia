@@ -37,6 +37,14 @@
     src: "{{ sia_dir }}"
     dest: "{{ sia_symlink }}"
 
+- name: create sia data directory
+  file:
+    state: directory
+    path: "{{ sia_data_dir }}"
+    mode: 0755
+    owner: "{{ sia_user }}"
+    group: "{{ sia_group }}"
+
 - name: check for consensus database
   stat:
     path: "{{ sia_dir }}/consensus/consensus.db"
@@ -53,3 +61,17 @@
     group: "{{ sia_user }}"
     recurse: yes
     state: directory
+
+- name: copy sia systemd service file
+  template:
+    src: sia.service.j2
+    dest: /etc/systemd/system/sia.service
+    mode: 0644
+  notify:
+    - reload systemd configs
+    - restart sia service
+
+- name: enable sia service
+  service:
+    name: sia
+    enabled: yes

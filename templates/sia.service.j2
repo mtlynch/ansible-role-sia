@@ -1,0 +1,12 @@
+[Unit]
+Description=Sia Distributed Storage Service
+
+[Service]
+ExecStart={{ sia_symlink }}/siad \
+  --modules {{ sia_modules }} \
+  --sia-directory {{ sia_data_dir }}
+WorkingDirectory={{ sia_data_dir }}
+User={{ sia_user }}
+
+[Install]
+WantedBy=multi-user.target
