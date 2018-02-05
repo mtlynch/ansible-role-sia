@@ -6,3 +6,5 @@ sia_dir: "/opt/{{ sia_package }}"
 sia_symlink: "/opt/sia"
 sia_bootstrap_blockchain: True
 sia_blockchain_url: https://consensus.siahub.info/consensus.db.gz
+sia_user: sia
+sia_group: "{{ sia_user }}"
