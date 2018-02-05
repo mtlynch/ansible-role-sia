@@ -10,9 +10,12 @@ env:
   global:
     - ANSIBLE_ROLES_PATH: ~/roles
   matrix:
+    - distro: debian8
+      init: /lib/systemd/systemd
+      run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     - distro: ubuntu1604
       init: /lib/systemd/systemd
-      run_opts: ""
+      run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 install:
   - pip install ansible==2.4.0
   - pip install ansible-lint==3.4.16

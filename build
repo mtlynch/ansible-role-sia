@@ -23,12 +23,13 @@ docker run \
   --detach \
   --volume="${PWD}":/etc/ansible/roles/role_under_test:ro \
   -w "/tmp" \
+  "$run_opts" \
   -e "DISPLAY=${DISPLAY}" \
-  ${image_tag} ${init} > "$id_file"
+  $image_tag $init > "$id_file"
 container_id="$(cat $id_file)"
-echo "Container ID:" "${container_id}"
+echo "Container ID:" "$container_id"
 
-printf "${container_id} ansible_connection=docker\n" > hosts
+printf "$container_id ansible_connection=docker\n" > hosts
 
 # Print ansible version.
 ansible --version
