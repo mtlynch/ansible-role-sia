@@ -53,6 +53,9 @@ grep -q 'changed=0.*failed=0' "${idempotence_file}" && \
   (echo 'Idempotence test: pass' && exit 0) || \
   (echo 'Idempotence test: fail' && exit 1)
 
+# Check that Sia is running.
+ansible-playbook check_status.yml
+
 # Clean up
 docker stop "${container_id}"
 docker rm "${container_id}"
