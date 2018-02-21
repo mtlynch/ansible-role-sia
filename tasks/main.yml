@@ -47,7 +47,7 @@
 
 - name: check for consensus database
   stat:
-    path: "{{ sia_dir }}/consensus/consensus.db"
+    path: "{{ sia_data_dir }}/consensus/consensus.db"
   register: consensus_file
 
 - name: bootstrap consensus file
