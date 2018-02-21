@@ -29,6 +29,8 @@
     src: "{{ sia_url }}"
     dest: "{{ sia_dir | dirname }}"
     remote_src: True
+    owner: "{{ sia_user }}"
+    group: "{{ sia_group }}"
   when: not sia_dir_stat.stat.exists
 
 - name: set symlink to latest Sia version
@@ -36,6 +38,8 @@
     state: link
     src: "{{ sia_dir }}"
     dest: "{{ sia_symlink }}"
+    owner: "{{ sia_user }}"
+    group: "{{ sia_group }}"
 
 - name: create sia data directory
   file:
@@ -56,7 +60,7 @@
 
 - name: change ownership to ansible user
   file:
-    path: "{{ sia_dir }}"
+    path: "{{ sia_data_dir }}"
     owner: "{{ sia_user }}"
     group: "{{ sia_user }}"
     recurse: yes
