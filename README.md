@@ -8,7 +8,13 @@
 
 Available variables are listed below, along with default values (see [defaults/main.yml](defaults/main.yml)):
 
-TODO(mtlynch): Add these
+The version of Sia to install:
+
+```yaml
+sia_version: 1.3.1
+```
+
+TODO(mtlynch): Add the rest.
 
 ## Dependencies
 
