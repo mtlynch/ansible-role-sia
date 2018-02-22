@@ -52,6 +52,8 @@
 - name: check for consensus database
   stat:
     path: "{{ sia_data_dir }}/consensus/consensus.db"
+    get_md5: no
+    get_checksum: no
   register: consensus_file
 
 - name: bootstrap consensus file
