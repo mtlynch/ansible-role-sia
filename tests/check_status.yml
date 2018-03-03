@@ -1,6 +1,8 @@
 ---
 - hosts: all
   remote_user: root
+  roles:
+    - { role: role_under_test, tags: ['role_under_test'] }
   tasks:
     - name: give the sia service a few seconds to load
       pause:
