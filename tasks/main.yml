@@ -81,3 +81,14 @@
   service:
     name: sia
     enabled: yes
+
+- meta: flush_handlers
+  when: sia_wait_for_sync
+
+- name: wait until consensus is synced
+  command: "{{ sia_siac_path }} consensus"
+  register: consensus_result
+  until: "consensus_result.stdout.find('Synced: Yes') >= 0"
+  retries: "{{ 10 ** 6 }}"
+  delay: 60
+  when: sia_wait_for_sync
