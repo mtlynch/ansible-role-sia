@@ -10,3 +10,4 @@ sia_blockchain_url: https://consensus.siahub.info/consensus.db.gz
 sia_user: sia
 sia_group: "{{ sia_user }}"
 sia_modules: cgtwrh
+sia_wait_for_sync: True

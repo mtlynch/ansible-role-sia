@@ -3,5 +3,6 @@
   remote_user: root
   vars:
     - sia_bootstrap_blockchain: False
+    - sia_wait_for_sync: False
   roles:
     - { role: role_under_test, tags: ['role_under_test'] }
