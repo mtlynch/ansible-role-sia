@@ -7,7 +7,7 @@
         seconds: 10
 
     - name: get sia status
-      command: "/opt/sia/siac"
+      command: "{{ sia_siac_path }}"
       register: siac_result
 
     - name: show siac_result
