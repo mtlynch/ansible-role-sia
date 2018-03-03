@@ -13,6 +13,7 @@
 
     - name: get sia status
       command: "{{ sia_siac_path }}"
+      changed_when: False
       register: siac_result
 
     - name: show siac_result
