@@ -11,3 +11,5 @@ sia_user: sia
 sia_group: "{{ sia_user }}"
 sia_modules: cgtwrh
 sia_wait_for_sync: True
+sia_seed: null
+sia_password: "{{ sia_seed }}"
