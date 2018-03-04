@@ -85,6 +85,11 @@
 - meta: flush_handlers
   when: sia_wait_for_sync
 
+- name: verify sia service is running
+  service:
+    name: sia
+    state: started
+
 - name: wait until consensus is synced
   command: "{{ sia_siac_path }} consensus"
   register: consensus_result
@@ -92,3 +97,16 @@
   retries: "{{ 10 ** 6 }}"
   delay: 60
   when: sia_wait_for_sync
+  changed_when: False
+
+- name: ensure wallet initialized
+  import_tasks: initialize_wallet.yml
+  when: (sia_password is not none) and
+        (sia_password | length > 0) and
+        (sia_seed is not none) and
+        (sia_seed | length > 0)
+
+- name: ensure wallet unlocked
+  import_tasks: unlock_wallet.yml
+  when: (sia_password is not none) and
+        (sia_password | length > 0)

@@ -1,0 +1,21 @@
+---
+- name: get wallet status
+  command: "{{ sia_siac_path }} wallet"
+  register: wallet_result
+  changed_when: False
+
+- name: check if wallet is locked
+  set_fact:
+    wallet_locked: "{{ wallet_result.stdout.find('Unlocked') == -1 }}"
+
+- name: unlock wallet
+  uri:
+    url: http://localhost:9980/wallet/unlock
+    method: POST
+    headers:
+      User-Agent: Sia-Agent
+      Content-Type: "application/x-www-form-urlencoded"
+    body: "encryptionpassword={{ sia_password }}"
+    status_code: 204
+    timeout: "{{ 10 ** 6 }}"
+  when: wallet_locked
