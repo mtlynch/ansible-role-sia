@@ -1,0 +1,39 @@
+---
+- name: get wallet status
+  command: "{{ sia_siac_path }} wallet"
+  register: wallet_result
+  changed_when: False
+
+- name: check if wallet is initialized
+  set_fact:
+    wallet_initialized: "{{ wallet_result.stdout.find('Unencrypted, Locked') == -1 }}"
+
+- name: initialize wallet with random seed
+  uri:
+    url: http://localhost:9980/wallet/init
+    method: POST
+    headers:
+      User-Agent: Sia-Agent
+      Content-Type: "application/x-www-form-urlencoded"
+    body: "encryptionpassword={{ sia_password | default('') }}"
+    status_code: 200
+    timeout: "{{ 10 ** 6 }}"
+  register: wallet_init_response
+  when: not wallet_initialized
+
+- name: save sia seed to variable
+  set_fact:
+    sia_seed: "{{ wallet_init_response.json.primaryseed }}"
+
+- name: save sia wallet password to variable
+  set_fact:
+    sia_password: "{{ wallet_init_response.json.primaryseed }}"
+  when: (sia_password is none) or
+        (sia_password | length == 0)
+
+- name: save seed to file on localhost
+  lineinfile:
+    path: "{{ sia_seed_path }}"
+    create: yes
+    line: "{{ inventory_hostname }}: {{ sia_seed }}"
+  delegate_to: localhost

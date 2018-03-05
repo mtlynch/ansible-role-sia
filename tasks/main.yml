@@ -99,6 +99,11 @@
   when: sia_wait_for_sync
   changed_when: False
 
+- name: create new seed
+  import_tasks: create_seed.yml
+  when: (sia_seed_path is not none) and
+        (sia_seed_path | length > 0)
+
 - name: ensure wallet initialized
   import_tasks: initialize_wallet.yml
   when: (sia_password is not none) and
