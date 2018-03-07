@@ -6,7 +6,7 @@
   roles:
     - { role: role_under_test, tags: ['role_under_test'] }
   tasks:
-    - name: wait until consensus is synced
+    - name: wait until consensus sync process begins
       command: "{{ sia_siac_path }} consensus"
       register: siac_result
       until: "siac_result.stdout.find('Height:') >= 0"
