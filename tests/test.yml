@@ -2,19 +2,17 @@
 - hosts: all
   remote_user: root
   vars:
-    - sia_bootstrap_blockchain: False
     - sia_wait_for_sync: False
   roles:
     - { role: role_under_test, tags: ['role_under_test'] }
   tasks:
-    - name: give the sia service a few seconds to load
-      pause:
-        seconds: 10
-
-    - name: get sia status
-      command: "{{ sia_siac_path }}"
-      changed_when: False
+    - name: wait until consensus is synced
+      command: "{{ sia_siac_path }} consensus"
       register: siac_result
+      until: "siac_result.stdout.find('Height:') >= 0"
+      retries: 10
+      delay: 3
+      changed_when: False
 
     - name: show siac_result
       debug:
