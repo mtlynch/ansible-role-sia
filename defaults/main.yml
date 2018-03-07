@@ -5,8 +5,11 @@ sia_url: "https://github.com/NebulousLabs/Sia/releases/download/v{{ sia_version 
 sia_dir: "/opt/{{ sia_package }}"
 sia_symlink: "/opt/sia"
 sia_data_dir: "/opt/sia-data"
-sia_bootstrap_blockchain: True
+
+# Bootstrap the blockchain from Siahub.info (speeds up consensus sync).
+sia_bootstrap_blockchain: False
 sia_blockchain_url: https://consensus.siahub.info/consensus.db.gz
+
 sia_user: sia
 sia_group: "{{ sia_user }}"
 sia_modules: cgtwrh
