@@ -104,8 +104,8 @@
   when: (sia_seed_path is not none) and
         (sia_seed_path | length > 0)
 
-- name: ensure wallet initialized
-  import_tasks: initialize_wallet.yml
+- name: load wallet from existing seed
+  import_tasks: load_from_seed.yml
   when: (sia_wallet_password is not none) and
         (sia_wallet_password | length > 0) and
         (sia_seed is not none) and
