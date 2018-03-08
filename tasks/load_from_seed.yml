@@ -8,7 +8,7 @@
   set_fact:
     wallet_initialized: "{{ wallet_result.stdout.find('Unencrypted, Locked') == -1 }}"
 
-- name: initialize wallet
+- name: load wallet from seed
   uri:
     url: http://localhost:9980/wallet/init/seed
     method: POST
