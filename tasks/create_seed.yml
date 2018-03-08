@@ -15,7 +15,7 @@
     headers:
       User-Agent: Sia-Agent
       Content-Type: "application/x-www-form-urlencoded"
-    body: "encryptionpassword={{ sia_password | default('') }}"
+    body: "encryptionpassword={{ sia_wallet_password | default('') }}"
     status_code: 200
     timeout: "{{ 10 ** 6 }}"
   register: wallet_init_response
@@ -27,9 +27,9 @@
 
 - name: save sia wallet password to variable
   set_fact:
-    sia_password: "{{ wallet_init_response.json.primaryseed }}"
-  when: (sia_password is none) or
-        (sia_password | length == 0)
+    sia_wallet_password: "{{ wallet_init_response.json.primaryseed }}"
+  when: (sia_wallet_password is none) or
+        (sia_wallet_password | length == 0)
 
 - name: save seed to file on localhost
   lineinfile:

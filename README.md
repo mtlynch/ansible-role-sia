@@ -79,7 +79,7 @@ sia_seed: null
 The passphrase to decrypt the node's wallet:
 
 ```yaml
-sia_password: "{{ sia_seed }}"
+sia_wallet_password: "{{ sia_seed }}"
 ```
 
 ## Dependencies
