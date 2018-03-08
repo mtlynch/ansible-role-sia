@@ -66,8 +66,9 @@ sia_modules: cgtwrh
 
 Path (on the control node, localhost) to a file to store newly created seed passphrases. If specified, and ansible-role-sia provisions a node with an unitialized wallet, Ansible will initialize the wallet with a random Sia seed and save the passphrase to this file. If the node already has an initialized wallet, this variable is ignored.
 
+```yaml
 sia_seed_path: null
-
+```
 
 The 29-word Sia passphrase to use to initialize the node's Sia wallet. If the node already has an initialized wallet, this variable is ignored.
 
