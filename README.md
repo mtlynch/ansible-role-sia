@@ -24,7 +24,7 @@ Available variables are listed below, along with default values (see [defaults/m
 The version of Sia to install:
 
 ```yaml
-sia_version: 1.3.1
+sia_version: 1.3.2
 ```
 
 The location to install Sia:
