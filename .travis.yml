@@ -17,7 +17,7 @@ env:
       init: /lib/systemd/systemd
       run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 install:
-  - pip install ansible==2.4.0
+  - pip install ansible==2.4.3.0
   - pip install ansible-lint==3.4.16
   - mkdir "${ANSIBLE_ROLES_PATH}"
   - printf "[defaults]\ninventory=hosts\nansible_roles=${ANSIBLE_ROLES_PATH}" > ~/.ansible.cfg
