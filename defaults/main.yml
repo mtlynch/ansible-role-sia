@@ -7,13 +7,13 @@ sia_symlink: "/opt/sia"
 sia_data_dir: "/opt/sia-data"
 
 # Bootstrap the blockchain from Siahub.info (speeds up consensus sync).
-sia_bootstrap_blockchain: False
+sia_bootstrap_blockchain: false
 sia_blockchain_url: https://consensus.siahub.info/consensus.db.gz
 
 sia_user: sia
 sia_group: "{{ sia_user }}"
 sia_modules: cgtwrh
-sia_wait_for_sync: True
+sia_wait_for_sync: true
 sia_seed_path: null
 sia_seed: null
 sia_wallet_password: "{{ sia_seed }}"

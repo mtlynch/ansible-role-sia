@@ -2,7 +2,7 @@
 - name: get wallet status
   command: "{{ sia_siac_path }} wallet"
   register: wallet_result
-  changed_when: False
+  changed_when: false
 
 - name: check if wallet is initialized
   set_fact:
@@ -34,6 +34,6 @@
 - name: save seed to file on localhost
   lineinfile:
     path: "{{ sia_seed_path }}"
-    create: yes
+    create: true
     line: "{{ inventory_hostname }}: {{ sia_seed }}"
   delegate_to: localhost

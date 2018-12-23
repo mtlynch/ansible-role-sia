@@ -5,10 +5,10 @@ galaxy_info:
   license: MIT
   min_ansible_version: 2.4
   platforms:
-  - name: Ubuntu
-    versions:
-      - xenial
-      - zesty
+    - name: Ubuntu
+      versions:
+        - xenial
+        - zesty
   galaxy_tags:
     - sia
     - siacoin

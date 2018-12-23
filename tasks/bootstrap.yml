@@ -12,9 +12,8 @@
   get_url:
     url: "{{ sia_blockchain_url }}"
     dest: "{{ sia_consensus_gzip }}"
-    force: yes
-    remote_src: True
+    force: true
+    remote_src: true
 
 - name: unzip the consensus database
   command: "gunzip {{ sia_consensus_gzip }}"
-

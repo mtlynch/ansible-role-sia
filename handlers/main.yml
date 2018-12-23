@@ -2,10 +2,9 @@
 - name: reload systemd configs
   systemd:
     name: sia
-    daemon_reload: yes
+    daemon_reload: true
 
 - name: restart sia service
   service:
     name: sia
     state: restarted
-

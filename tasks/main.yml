@@ -8,16 +8,13 @@
   user:
     name: "{{ sia_user }}"
     group: "{{ sia_group }}"
-    system: yes
+    system: true
 
 - name: install dependencies for downloading Sia archive
   apt:
-    name: "{{ item }}"
-    state: installed
-    update_cache: yes # TODO(mtlynch): Remove this.
-  with_items:
-    - unzip
-    - wget
+    name: [ "unzip", "wget"]
+    state: present
+    update_cache: true  # TODO(mtlynch): Remove this.
 
 - name: check for existing Sia installation
   stat:
@@ -28,7 +25,7 @@
   unarchive:
     src: "{{ sia_url }}"
     dest: "{{ sia_dir | dirname }}"
-    remote_src: True
+    remote_src: true
     owner: "{{ sia_user }}"
     group: "{{ sia_group }}"
   when: not sia_dir_stat.stat.exists
@@ -52,8 +49,8 @@
 - name: check for consensus database
   stat:
     path: "{{ sia_data_dir }}/consensus/consensus.db"
-    get_md5: no
-    get_checksum: no
+    get_md5: false
+    get_checksum: false
   register: consensus_file
 
 - name: bootstrap consensus file
@@ -65,7 +62,7 @@
     path: "{{ sia_data_dir }}"
     owner: "{{ sia_user }}"
     group: "{{ sia_user }}"
-    recurse: yes
+    recurse: true
     state: directory
 
 - name: copy sia systemd service file
@@ -78,12 +75,12 @@
     - restart sia service
 
 - name: enable sia service
-  service:
+  systemd:
     name: sia
-    enabled: yes
+    enabled: true
+    daemon_reload: true
 
 - meta: flush_handlers
-  when: sia_wait_for_sync
 
 - name: verify sia service is running
   service:
@@ -97,7 +94,7 @@
   retries: "{{ 10 ** 6 }}"
   delay: 60
   when: sia_wait_for_sync
-  changed_when: False
+  changed_when: false
 
 - name: create new seed
   import_tasks: create_seed.yml

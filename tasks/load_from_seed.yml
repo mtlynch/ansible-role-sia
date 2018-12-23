@@ -2,7 +2,7 @@
 - name: get wallet status
   command: "{{ sia_siac_path }} wallet"
   register: wallet_result
-  changed_when: False
+  changed_when: false
 
 - name: check if wallet is initialized
   set_fact:
