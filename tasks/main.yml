@@ -12,12 +12,13 @@
 
 - name: install dependencies for downloading Sia archive
   apt:
-    name: "{{ item }}"
-    state: installed
+    name: "{{ packages }}"
+    state: present
     update_cache: yes # TODO(mtlynch): Remove this.
-  with_items:
-    - unzip
-    - wget
+  vars:
+    packages:
+      - unzip
+      - wget
 
 - name: check for existing Sia installation
   stat:
